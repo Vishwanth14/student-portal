@@ -3,18 +3,29 @@
 
 using namespace std;
 
-void UserProfile::display(string username, string status, bool isPremium) {
-    int profileViews = 142; // Added basic view counter variable
-    
-    cout << "\n=== USER PROFILE ===" << endl;
-    cout << "Username: " << username;
-    if (isPremium) { cout << " [✔ Verified Premium]"; }
-    cout << endl;
-    cout << "Status: " << status << endl;
-    cout << "Joined: January 2026" << endl;
-    cout << "Bio: Coding enthusiast building cool projects." << endl;
-    cout << "Profile Views: " << profileViews << endl; // Display views counter
-    cout << "====================" << endl;
-}
+// Class definition to track internal profile states cleanly
+class UserProfile {
+private:
+    bool isPrivate = false; // Controls visibility of the profile details
+
+public:
+    void setPrivacy(bool privacySetting) {
+        isPrivate = privacySetting;
+    }
+
+    void display(string username) {
+        cout << "\n=== USER PROFILE ===" << endl;
+        cout << "Username: " << username << endl;
+        
+        if (isPrivate) {
+            cout << "Status: [Hidden - Private Profile]" << endl;
+            cout << "====================" << endl;
+            return; // Stops rendering early for user privacy
+        }
+
+        cout << "Status: Active Member" << endl;
+        cout << "====================" << endl;
+    }
+};
 
 
