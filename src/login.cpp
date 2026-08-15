@@ -9,25 +9,24 @@ bool checkLogin() {
     cout << "Enter Username: ";
     cin >> username;
 
+    // Validation: Check if length is less than 4
+    if (username.length() < 4) {
+        cout << "Error: Username must be at least 4 characters long.\n";
+        return false;
+    }
+
     cout << "Enter Password: ";
     cin >> password;
 
-    // Simple hardcoded check
-    if (username == "admin" && password == "pass123") {
-        return true;
-    }
-    
-    return false;
+    return (username == "admin" && password == "pass123");
 }
 
 int main() {
-    cout << "=== Welcome ===" << endl;
-    
     if (checkLogin()) {
-        cout << "Access Granted!" << endl;
+        cout << "Access Granted!\n";
     } else {
-        cout << "Access Denied!" << endl;
+        cout << "Access Denied!\n";
     }
-
     return 0;
 }
+
