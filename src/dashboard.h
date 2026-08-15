@@ -3,21 +3,20 @@
 
 #include <string>
 #include <vector>
-#include "profile.h" // Includes your existing UserProfile class
 
 class Dashboard {
 private:
     std::vector<std::string> systemLogs;
     int totalVisits;
+    std::string adminPassword; // Secure authentication credential storage
 
 public:
-    // Constructor initializes metrics
     Dashboard();
-
-    // Adds system audit actions
+    
+    // Verifies administrator portal login credentials
+    bool authenticate(const std::string& inputPass);
+    
     void logActivity(const std::string& action);
-
-    // Prints out administrative analytics
     void displayMetrics(int totalRegisteredUsers) const;
 };
 
