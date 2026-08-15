@@ -10,3 +10,15 @@ Execute 9 practical tasks independently while maintaining clean,
 
 professional, and meaningful Git history.
 
+
+
+\# Prerequisites
+
+
+
+\-Git
+
+\-GitHub Account
+
+\-C++ compiler
+
