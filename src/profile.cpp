@@ -5,8 +5,8 @@ using namespace std;
 
 class UserProfile {
 private:
-    bool isPrivate = false; // Controls visibility of the profile details
-    string githubHandle = ""; // Added fields to store social connections
+    bool isPrivate = false;
+    string githubHandle = "";
     string twitterHandle = "";
 
 public:
@@ -14,7 +14,6 @@ public:
         isPrivate = privacySetting;
     }
 
-    // Method to store user social media handles
     void setSocials(string github, string twitter) {
         githubHandle = github;
         twitterHandle = twitter;
@@ -27,21 +26,34 @@ public:
         if (isPrivate) {
             cout << "Status: [Hidden - Private Profile]" << endl;
             cout << "====================" << endl;
-            return; // Stops rendering early to keep social links secure
+            return;
         }
 
         cout << "Status: Active Member" << endl;
 
-        // Displays connections section only if handles are provided
         if (!githubHandle.empty() || !twitterHandle.empty()) {
             cout << "--- Connections ---" << endl;
             if (!githubHandle.empty()) cout << "GitHub: ://github.com" << githubHandle << endl;
             if (!twitterHandle.empty()) cout << "Twitter: @" << twitterHandle << endl;
         }
 
+        // Calculate profile completion score based on filled fields
+        int profileStrength = 40; // Base score for username
+        if (!githubHandle.empty()) profileStrength += 30;
+        if (!twitterHandle.empty()) profileStrength += 30;
+
+        // Render visual bar metric
+        cout << "Profile Completeness: " << profileStrength << "% [";
+        for (int i = 0; i < 10; ++i) {
+            if (i < (profileStrength / 10)) cout << "■";
+            else cout << " ";
+        }
+        cout << "]" << endl;
+
         cout << "====================" << endl;
     }
 };
+
 
 
 
