@@ -3,8 +3,8 @@
 
 using namespace std;
 
-// Updated constructor tracking state variables
-Settings::Settings() : themeMode("Dark"), volumeLevel(70), notificationsEnabled(true), systemLanguage("English"), powerSaverEnabled(false) {}
+// Updated constructor to track internal backup sync timestamps
+Settings::Settings() : themeMode("Dark"), volumeLevel(70), notificationsEnabled(true), systemLanguage("English"), powerSaverEnabled(false), lastSyncTime("Never synced") {}
 
 void Settings::setTheme(const string& newTheme) {
     if (powerSaverEnabled && newTheme != "Dark") {
@@ -20,7 +20,6 @@ void Settings::setVolume(int newVolume) {
     else if (newVolume > 100) volumeLevel = 100;
     else volumeLevel = newVolume;
     
-    // Limits max volume ceiling while running structural safe power state
     if (powerSaverEnabled && volumeLevel > 30) {
         volumeLevel = 30;
         cout << "[System] Volume restricted to 30% due to active Power Saver profile." << endl;
@@ -41,6 +40,7 @@ void Settings::factoryReset() {
     notificationsEnabled = true;
     systemLanguage = "English";
     powerSaverEnabled = false;
+    lastSyncTime = "Never synced"; // Clear previous sync logs
     cout << "[System] Factory reset applied. All preferences restored to default state." << endl;
 }
 
@@ -53,32 +53,43 @@ void Settings::setLanguage(const string& newLanguage) {
     }
 }
 
-// Added Power Saving Mode Toggle Feature: Automatically alters layout bounds to save energy
 void Settings::togglePowerSaver() {
     powerSaverEnabled = !powerSaverEnabled;
     cout << "[System] Hardware Power Saving optimization profile turned " 
          << (powerSaverEnabled ? "ENABLED" : "DISABLED") << endl;
          
     if (powerSaverEnabled) {
-        themeMode = "Dark"; // Overrides current setup to low power color matrix
+        themeMode = "Dark";
         if (volumeLevel > 30) {
-            volumeLevel = 30; // Caps audio consumption limits
+            volumeLevel = 30;
         }
         cout << "[System] Settings dynamically restricted to conserve battery life." << endl;
     }
+}
+
+// Added Cloud Synchronisation Feature: Simulates pushing current configurations to external storage servers
+void Settings::syncToCloud() {
+    cout << "[System] Establishing connection to backup profile repository database..." << endl;
+    cout << "[System] Encrypting structural local preferences configurations..." << endl;
+    
+    // Simulate real-time server response state updates
+    lastSyncTime = "August 2026 (Successful Backup)";
+    cout << "[System] Profile syncing completed. All operational settings securely stored online." << endl;
 }
 
 void Settings::printConfiguration() const {
     cout << "\n=====================================" << endl;
     cout << "      APPLICATION SETTINGS MANAGER   " << endl;
     cout << "=====================================" << endl;
-    cout << "Power Saving Mode:     " << (powerSaverEnabled ? "ON 🔋" : "OFF 🔌") << endl; // Added tracking line
+    cout << "Cloud Profile Sync:    " << lastSyncTime << endl; // Added tracking output block line
+    cout << "Power Saving Mode:     " << (powerSaverEnabled ? "ON 🔋" : "OFF 🔌") << endl;
     cout << "Display Interface Lang: " << systemLanguage << endl;
     cout << "Current Theme:         " << themeMode << endl;
     cout << "Audio Volume Level:    " << volumeLevel << "%" << endl;
     cout << "Push Notifications:    " << (notificationsEnabled ? "Enabled 🔔" : "Disabled 🔕") << endl;
     cout << "=====================================" << endl;
 }
+
 
 
 
