@@ -3,16 +3,27 @@
 
 using namespace std;
 
-// Constructor sets starting metric totals
-Dashboard::Dashboard() : totalVisits(0) {}
+Dashboard::Dashboard() : totalVisits(0), adminPassword("secure123") {}
 
-// Tracks system activity inside memory vectors
-void Dashboard::logActivity(const string& action) {
-    systemLogs.push_back(action);
-    totalVisits++; // Increments visit hit count every time action logs
+bool Dashboard::authenticate(const string& inputPass) {
+    if (inputPass == adminPassword) {
+        logActivity("Admin successfully authenticated.");
+        return true;
+    }
+    logActivity("Failed authentication attempt blocked.");
+    return false;
 }
 
-// Renders full system stats panel dashboard analytics
+void Dashboard::logActivity(const string& action) {
+    systemLogs.push_back(action);
+    totalVisits++;
+
+    // Added Auto-Archive Feature: Keeps system logs from eating up memory
+    if (systemLogs.size() > 5) {
+        systemLogs.erase(systemLogs.begin()); // Removes oldest entry
+    }
+}
+
 void Dashboard::displayMetrics(int totalRegisteredUsers) const {
     cout << "\n=====================================" << endl;
     cout << "      SYSTEM METRICS DASHBOARD       " << endl;
@@ -24,10 +35,10 @@ void Dashboard::displayMetrics(int totalRegisteredUsers) const {
     if (systemLogs.empty()) {
         cout << "  [No recent activity logs recorded]" << endl;
     } else {
-        // Prints recent logged actions
         for (const auto& log : systemLogs) {
             cout << "  - " << log << endl;
         }
     }
     cout << "=====================================" << endl;
 }
+
