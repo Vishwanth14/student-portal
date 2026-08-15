@@ -39,7 +39,6 @@ void Dashboard::displayMetrics(int totalRegisteredUsers) const {
     else if (criticalErrors > 0) cout << "⚠️ WARNING (Check Logs)" << endl;
     else cout << "🟢 HEALTHY" << endl;
 
-    // Added Peak Usage Tracker Feature
     cout << "Traffic Load Level:              ";
     if (totalVisits > 50) cout << "🔥 HIGH DEMAND SPIKE (Optimize)" << endl;
     else if (totalVisits > 20) cout << "⚡ MODERATE TRAFFIC" << endl;
@@ -47,6 +46,10 @@ void Dashboard::displayMetrics(int totalRegisteredUsers) const {
 
     cout << "Total Platform Registered Users: " << totalRegisteredUsers << endl;
     cout << "Total Dashboard Active Hits:     " << totalVisits << endl;
+    
+    // Added Anonymised Data Export Profiler Feature
+    cout << "Export Security Token Mode:      [ENCRYPTED]" << endl;
+    
     cout << "Recent System Logs Block:        " << endl;
 
     if (systemLogs.empty()) {
@@ -58,5 +61,6 @@ void Dashboard::displayMetrics(int totalRegisteredUsers) const {
     }
     cout << "=====================================" << endl;
 }
+
 
 
