@@ -32,3 +32,13 @@ professional, and meaningful Git history.
 
 \-./code
 
+
+
+\#Git Workflow
+
+
+
+\-The project demonstrates feature branches, merges, file history preservation,
+
+stash operations, reflog recovery, conflict resolution, and release tagging.
+
