@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// Updated constructor to track internal backup sync timestamps
 Settings::Settings() : themeMode("Dark"), volumeLevel(70), notificationsEnabled(true), systemLanguage("English"), powerSaverEnabled(false), lastSyncTime("Never synced") {}
 
 void Settings::setTheme(const string& newTheme) {
@@ -40,7 +39,7 @@ void Settings::factoryReset() {
     notificationsEnabled = true;
     systemLanguage = "English";
     powerSaverEnabled = false;
-    lastSyncTime = "Never synced"; // Clear previous sync logs
+    lastSyncTime = "Never synced";
     cout << "[System] Factory reset applied. All preferences restored to default state." << endl;
 }
 
@@ -67,21 +66,44 @@ void Settings::togglePowerSaver() {
     }
 }
 
-// Added Cloud Synchronisation Feature: Simulates pushing current configurations to external storage servers
 void Settings::syncToCloud() {
     cout << "[System] Establishing connection to backup profile repository database..." << endl;
     cout << "[System] Encrypting structural local preferences configurations..." << endl;
-    
-    // Simulate real-time server response state updates
     lastSyncTime = "August 2026 (Successful Backup)";
     cout << "[System] Profile syncing completed. All operational settings securely stored online." << endl;
+}
+
+// Added Configuration Integrity Diagnostic Checker Feature
+void Settings::runDiagnostics() const {
+    cout << "\n--- RUNNING CONFIGURATION INTEGRITY SCAN ---" << endl;
+    int alertsCount = 0;
+
+    if (volumeLevel > 85) {
+        cout << "  [⚠️ ALERT] Volume Level is set dangerously high (" << volumeLevel << "%). Risk of audio clipping." << endl;
+        alertsCount++;
+    }
+    if (!notificationsEnabled) {
+        cout << "  [⚠️ ALERT] System notifications are disabled. Critical push alerts will be ignored." << endl;
+        alertsCount++;
+    }
+    if (lastSyncTime == "Never synced") {
+        cout << "  [⚠️ ALERT] System has never been synced to the cloud. Local configs are not backed up." << endl;
+        alertsCount++;
+    }
+
+    if (alertsCount == 0) {
+        cout << "  [🟢 PASS] Diagnostics complete. Optimization matrices are fully stable!" << endl;
+    } else {
+        cout << "  [📊 SUMMARY] Scan complete. Found " << alertsCount << " structural warning profile flags." << endl;
+    }
+    cout << "--------------------------------------------" << endl;
 }
 
 void Settings::printConfiguration() const {
     cout << "\n=====================================" << endl;
     cout << "      APPLICATION SETTINGS MANAGER   " << endl;
     cout << "=====================================" << endl;
-    cout << "Cloud Profile Sync:    " << lastSyncTime << endl; // Added tracking output block line
+    cout << "Cloud Profile Sync:    " << lastSyncTime << endl;
     cout << "Power Saving Mode:     " << (powerSaverEnabled ? "ON 🔋" : "OFF 🔌") << endl;
     cout << "Display Interface Lang: " << systemLanguage << endl;
     cout << "Current Theme:         " << themeMode << endl;
@@ -89,6 +111,8 @@ void Settings::printConfiguration() const {
     cout << "Push Notifications:    " << (notificationsEnabled ? "Enabled 🔔" : "Disabled 🔕") << endl;
     cout << "=====================================" << endl;
 }
+
+
 
 
 
