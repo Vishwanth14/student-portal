@@ -2,11 +2,11 @@
 
 
 
-Assuming the role of a junior software developer assigned to overhaul a
+\-Assuming the role of a junior software developer assigned to overhaul a
 
 legacy codebase named student-portal/.
 
-Execute 9 practical tasks independently while maintaining clean,
+\-Execute 9 practical tasks independently while maintaining clean,
 
 professional, and meaningful Git history.
 
@@ -21,4 +21,14 @@ professional, and meaningful Git history.
 \-GitHub Account
 
 \-C++ compiler
+
+
+
+\# Compilation and Execution
+
+
+
+\-g++ \*.cpp -o code
+
+\-./code
 
