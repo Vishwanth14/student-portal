@@ -10,7 +10,7 @@ bool Dashboard::authenticate(const string& inputPass) {
         logActivity("Admin successfully authenticated.");
         return true;
     }
-    logActivity("CRITICAL: Failed authentication attempt blocked."); // Added prefix for health scan
+    logActivity("CRITICAL: Failed authentication attempt blocked.");
     return false;
 }
 
@@ -28,7 +28,6 @@ void Dashboard::displayMetrics(int totalRegisteredUsers) const {
     cout << "      SYSTEM METRICS DASHBOARD       " << endl;
     cout << "=====================================" << endl;
     
-    // Added System Health Diagnostic Feature
     int criticalErrors = 0;
     for (const auto& log : systemLogs) {
         if (log.find("CRITICAL:") != string::npos) {
@@ -39,6 +38,12 @@ void Dashboard::displayMetrics(int totalRegisteredUsers) const {
     if (criticalErrors >= 3) cout << "🚨 UNDER ATTACK / SECURE LOCKDOWN" << endl;
     else if (criticalErrors > 0) cout << "⚠️ WARNING (Check Logs)" << endl;
     else cout << "🟢 HEALTHY" << endl;
+
+    // Added Peak Usage Tracker Feature
+    cout << "Traffic Load Level:              ";
+    if (totalVisits > 50) cout << "🔥 HIGH DEMAND SPIKE (Optimize)" << endl;
+    else if (totalVisits > 20) cout << "⚡ MODERATE TRAFFIC" << endl;
+    else cout << "🍃 LIGHT LOAD" << endl;
 
     cout << "Total Platform Registered Users: " << totalRegisteredUsers << endl;
     cout << "Total Dashboard Active Hits:     " << totalVisits << endl;
