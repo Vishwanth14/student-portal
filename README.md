@@ -70,3 +70,7 @@ src/
 
 └── settings.h
 
+#Licensing
+
+-This project is open-source distributed under the terms of the MIT License
+
