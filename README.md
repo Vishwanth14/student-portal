@@ -42,3 +42,31 @@ professional, and meaningful Git history.
 
 stash operations, reflog recovery, conflict resolution, and release tagging.
 
+
+
+\## Project Structure
+
+
+
+```text
+
+src/
+
+├── main.cpp
+
+├── login.cpp
+
+├── login.h
+
+├── profile.cpp
+
+├── profile.h
+
+├── dashboard.cpp
+
+├── dashboard.h
+
+├── settings.cpp
+
+└── settings.h
+
